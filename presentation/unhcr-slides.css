@@ -1,0 +1,47 @@
+:root {
+  --unhcr-font-color: rgb(34, 34, 34);
+  --unhcr-grey60: rgb(102, 102, 102);
+  --unhcr-grey20: rgb(204, 204, 204);
+  --unhcr-grey10: rgb(230, 230, 230);
+  --unhcr-blue: rgb(0, 114, 188);
+  --unhcr-lightblue: rgb(204, 227, 242);
+  --unhcr-yellow: rgb(250, 235, 0);
+}
+
+/*****
+ Typography
+*****/
+a, a > code {
+  color: var(--unhcr-blue);
+  text-decoration: none;
+}
+
+h1, h2 {
+  color: var(--unhcr-blue);
+}
+
+.lead {
+  font-size: 1.35rem;
+}
+
+.unhcr-blue {
+  color: var(--unhcr-blue);
+}
+
+.remark-slide-number {
+  display: none;
+}
+
+/*****
+ Dark slide
+*****/
+.inverse {
+  background-color: var(--unhcr-blue);
+  color: var(--unhcr-yellow);
+  text-shadow: none;
+}
+
+.inverse h1,
+.inverse h2 {
+  color: #ffffff;
+}
