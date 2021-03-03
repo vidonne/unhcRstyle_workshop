@@ -6,4 +6,5 @@ body {
 
 .remark-code, .remark-inline-code {
   font-family: 'Roboto Mono', monospace;
+  font-size: 0.8rem;
 }
