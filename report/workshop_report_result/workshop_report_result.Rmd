@@ -1,19 +1,19 @@
 ---
 # Front cover title and subtitle. Also use in the running header thoughout the document
-title: "White line"
-subtitle: "Yellow line"
+title: "Beautiful"
+subtitle: "Branded Report"
 # Abstract create an introduction box on the cover. Should be concise.
 #If you want want a full page image just remove abstract-title and abstract from the YAML
-abstract-title: First page sub-title
+abstract-title: My really important intro
 abstract: "Tur, sequis sunt abor rempos molupiet lab ipsa natque con niminve llesequos derro restes serionet autasperit ut estrum, ut quia excero et vit voloreic torum quae erias earchil explique pe officabo"
 # Date is used in the running footer
-date: "DD Months Year"
+date: "5 March 2021"
 # Author are the persons creating the doc. They won't appear in the doc but will be part of the DOM.
 # For the contact on the back cover, please refer to the bottom of the Rmd and ammend accordingly.
 author:
-  - name: Contact name1
-    affiliation: Job title1
-    email: <contact1email@unhcr.org>
+  - name: Cedric Vidonne
+    affiliation: IMO
+    email: <vidonne@unhcr.org>
   - name: Contact name2
     affiliation: Job title2
     email: <contact2email@unhcr.org>
@@ -21,7 +21,7 @@ output:
   unhcrthemes::unhcr_paged:
     css: ["unhcr-generic-fonts.css", "unhcr-generic-page.css", "unhcr-generic.css"]
     # Change to point to your cover file
-    front_cover: cover_placeholder.jpg
+    front_cover: img/col_cover.jpg
     # Keep as is it includes back cover UNHCR blue background and logo
     back_cover: unhcr-backcover.svg
     # Change to false to remove table of content
@@ -75,13 +75,21 @@ showtext::showtext_auto()
 
 ```
 
-# Template
+# Methodology
 
 ::: {.lead .unhcr-grey}
-This R Markdown document includes all the necessary features and styles to create an UNHCR branded report.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.
 :::
 
-This specific template is using principally the Pagedown package, for all the information about the package see <https://pagedown.rbind.io/>. The template targets mainly the creation of paginated HTML reports that can be easily printed as PDF, but from one R Markdown document we can have many different outputs (see below).
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex condimentum facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.
+
+Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus posuere convallis. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.
+
+Maecenas tincidunt quis tellus ac feugiat. Nulla mi felis, convallis quis neque ac, volutpat fringilla risus. Cras condimentum egestas volutpat. Praesent gravida semper lectus eu sagittis. Phasellus tristique felis nec finibus iaculis. Maecenas ex justo, tristique vitae orci nec, pellentesque fringilla turpis. Morbi molestie sollicitudin enim, a aliquam purus iaculis in. Nunc iaculis metus ac lobortis consequat. Phasellus tempus varius molestie. Curabitur nec ultrices ligula. Nulla sed ex nulla.
+
+Nunc eget suscipit metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam in pulvinar nisi. Phasellus ullamcorper, lectus in egestas venenatis, turpis metus vulputate ex, cursus aliquam augue elit quis dui. Proin tellus elit, scelerisque sit amet tempus at, convallis sed lorem. Suspendisse hendrerit eleifend massa, ut congue augue viverra vel. Sed vel rhoncus neque. Etiam quis turpis nisi. Mauris nec sapien tellus. Etiam lectus tellus, posuere vel placerat eget, aliquam ut arcu. Aliquam eu velit sit amet magna facilisis maximus eget sit amet massa. Donec pretium ullamcorper mattis. Donec viverra nibh eu venenatis tempus. Mauris non malesuada velit.
+
+Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec felis lobortis blandit et quis elit. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.
 
 ## R Markdown
 
@@ -165,21 +173,14 @@ knitr::kable(head(datasets::iris, 5),
 For more information please contact:
 
 ::: {.back-contact}
-[Contact1 Name]{.back-name}
+[Cedric Vidonne]{.back-name}
 
-Contact1 Title
+IMO
 
-[email1@unhcr.org](mailto:email1@unhcr.org)
+[vidonne@unhcr.org](mailto:vidonne@unhcr.org)
 :::
 
-::: {.back-contact}
-[Contact2 Name]{.back-name}
+::: 
 
-Contact2 Title
-
-[email2@unhcr.org](mailto:email2@unhcr.org)
-:::
-
-:::
 
 :::
