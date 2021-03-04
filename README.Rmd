@@ -21,6 +21,5 @@ This workshop is targeted to **UNHCR staff** that want to learn how to use the [
 *Workshop material*
 
 - [Presentation](https://github.com/vidonne/unhcRstyle_workshop/tree/master/presentation)
-- [Exercise]()
-- [Report demo result]()
-- [Report documentation]()
+- [Exercise](https://github.com/vidonne/unhcRstyle_workshop/tree/master/exercise)
+- [Report](https://github.com/vidonne/unhcRstyle_workshop/tree/master/report)

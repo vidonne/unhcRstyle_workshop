@@ -14,6 +14,5 @@ for the production of UNHCR branded products, as well as some basic
 *Workshop material*
 
 -   [Presentation](https://github.com/vidonne/unhcRstyle_workshop/tree/master/presentation)
--   [Exercise]()
--   [Report demo result]()
--   [Report documentation]()
+-   [Exercise](https://github.com/vidonne/unhcRstyle_workshop/tree/master/exercise)
+-   [Report](https://github.com/vidonne/unhcRstyle_workshop/tree/master/report)
