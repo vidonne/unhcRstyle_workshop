@@ -63,6 +63,8 @@ knitr::opts_chunk$set(
 ```{r packages, include=FALSE, message=FALSE, warning=FALSE}
 # Load required packages for charts with UNHCR style 
 library(unhcrthemes)
+library(unhcRstyle)
+library(unhcrdatapackage)
 library(ggplot2)
 library(showtext)
 
