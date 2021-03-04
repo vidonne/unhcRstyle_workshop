@@ -389,8 +389,8 @@ ggplot(data = ref_idp_year) +
 
 
 ```
-## geom_path: Each group consists of only one observation. Do you need to adjust the group
-## aesthetic?
+#&gt; geom_path: Each group consists of only one observation. Do you need to adjust the group
+#&gt; aesthetic?
 ```
 
 ![](unhcRstyle_workshop_presentation_files/figure-html/struct-step9-1.svg)&lt;!-- --&gt;
@@ -555,7 +555,7 @@ class: center, middle, inverse
 
 1. All the plots  will be using the 2 following datasets:
     - **End-year population figures** from [unhcrdatapackage](https://github.com/unhcr/unhcrdatapackage)
-    - **Colombia 4W** previously cleaned during basic R training (see R folder for detailed steps)
+    - **Colombia 4W** previously cleaned during basic R training
 2. We will use an incremental technique to understand clearly the effect of each line of code on our plots
 3. We won't spend time on the data manipulation part but we will present the structure of the dataset for each examples.
 4. We will be using packages from [tidyverse](https://www.tidyverse.org/) and mainly [ggplot2](https://ggplot2.tidyverse.org/). If any other packages are needed for a specific plot, it will be clearly stated in the code.
@@ -572,36 +572,89 @@ remotes::install_github('unhcr-web/unhcRstyle')
 
 ---
 
-.pull-left[
-
 ## Bar chart
 
-Develop a bar chart of the number of activity by sector using the information of the 4W in Colombia
+.pull-left[
+
+
+Develop a bar chart of total international displacement (refugees, asylum-seekers and Venezuelans displaced abroad) from 2010 to 2019.
+
+**The dataset:**
+
+
+```r
+int_displ &lt;- popdata %&gt;% 
+  filter(Year &gt;=2010) %&gt;% 
+  group_by(Year) %&gt;% 
+  summarise(Refugees = sum(REF, na.rm = TRUE),
+            `Asylum-seekers` = sum(ASY, na.rm = TRUE),
+            `Venezuelans displaced abroad` = sum(VDA, na.rm = TRUE)) %&gt;% 
+  pivot_longer(cols = c("Refugees", "Asylum-seekers", "Venezuelans displaced abroad"),
+               values_to = "Number of displaced", names_to = "Population type")
+```
+
+
+]
+
+.pull-right[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Year &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Population type &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Number of displaced &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2010 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Refugees &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9548900 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2010 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Asylum-seekers &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 835969 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2010 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Venezuelans displaced abroad &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2011 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Refugees &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10403951 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2011 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Asylum-seekers &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 895692 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2011 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Venezuelans displaced abroad &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+.pull-left[
 
 **Step 1:** Add data, map to the aesthetic and add a geom
 
 
 ```r
-*ggplot(data = data_4W) + # Data
-* aes(x = Sector) + # Variable of the x axis
-* geom_bar() # geom_bar by default do count of entries
-```
-
-
-```r
-# Other option if the count has already been calculated
-data_4W_counted &lt;- data_4W %&gt;% 
-  count(Sector, name = "count")
-
-ggplot(data = data_4W_counted) +
-  aes(x = Sector) +
-  geom_bar(stat = "identity")
-
-# or use geom_col that has stat = "identity" by default
-ggplot(data = data_4W_counted) +
-  aes(x = Sector) +
+ggplot(data = int_displ) +
+  aes(x = Year, y=`Number of displaced`) +
   geom_col()
 ```
+
 
 ]
 
@@ -613,9 +666,763 @@ ggplot(data = data_4W_counted) +
 
 ---
 
+.pull-left[
 
+**Step 2:** Rotate the axis for easier comparison and apply unhcr_theme
+
+
+```r
+ggplot(data = int_displ) +
+  aes(x = Year, y=`Number of displaced`) +
+  geom_col() +
+* coord_flip() +
+* unhcr_theme()
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/bar-step2-1.png)&lt;!-- --&gt;
+
+]
 
 ---
+
+.pull-left[
+
+**Step 3:** Add information about the graph and define active gridline in unhcr_theme
+
+
+```r
+ggplot(data = int_displ) +
+  aes(x = Year, y=`Number of displaced`) +
+  geom_col() +
+  coord_flip() +
+* unhcr_theme(grid = "Xx") + #Keeps major and minor X gridlines see unhcr_theme doc
+* labs(title = "Total number of international displacement",
+*      subtitle = "Refugees, Asylum-seekers and Venezuelans displaced abroad from 2010 to 2019",
+*      caption = "Source: UNHCR Data Finder")
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/bar-step3-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+.pull-left[
+
+**Step 4:** Change color of bars
+
+
+```r
+ggplot(data = int_displ) +
+  aes(x = Year, y=`Number of displaced`) +
+* geom_col(color = unhcr_blue) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +  
+  labs(title = "Total number of international displacement",
+       subtitle = "Refugees, Asylum-seekers and Venezuelans displaced abroad from 2010 to 2019", 
+       caption = "Source: UNHCR Data Finder") 
+```
+
+
+]
+
+--
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/bar-step4-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+.pull-left[
+
+**Step 4:** Change color of bars
+
+
+```r
+ggplot(data = int_displ) +
+  aes(x = Year, y=`Number of displaced`) +
+* geom_col(fill = unhcr_blue) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +  
+  labs(title = "Total number of international displacement",
+       subtitle = "Refugees, Asylum-seekers and Venezuelans displaced abroad from 2010 to 2019", 
+       caption = "Source: UNHCR Data Finder") 
+```
+
+
+]
+
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/bar-step4-1-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+.pull-left[
+
+**Step 5:** Clean subtitle and improve axis labeling and limits
+
+
+```r
+*library(scales)
+ggplot(data = int_displ) +
+  aes(x = Year, y=`Number of displaced`) +
+  geom_col(fill = unhcr_blue) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +
+  labs(title = "Total number of international displacement",
+       subtitle = "Refugees, Asylum-seekers and Venezuelans displaced abroad\nfrom 2010 to 2019",
+       caption = "Source: UNHCR Data Finder",
+*      x = "") +
+* scale_y_continuous(labels = scales::label_number_si(),
+*                    limits = c(NA, 30000000))
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/bar-step5-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+**What if I want to show the different population type?**
+
+--
+
+.pull-left[
+
+
+```r
+ggplot(data = int_displ) +
+  aes(x = Year, y=`Number of displaced`) +
+* geom_col(aes(fill = `Population type`)) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +
+  labs(title = "Total number of international displacement",
+       subtitle = "Refugees, Asylum-seekers and Venezuelans displaced abroad\nfrom 2010 to 2019",
+       caption = "Source: UNHCR Data Finder",
+       x = "") +
+  scale_y_continuous(labels = scales::label_number_si(),
+                     limits = c(NA, 30000000))
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/bar-step6-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+.pull-left[
+
+Apply UNHCR colors and reorder classes to be more easily comparable
+
+
+```r
+ggplot(data = int_displ) +
+  aes(x = Year, y=`Number of displaced`) +
+* geom_col(aes(fill = factor(`Population type`,
+*                            levels = c("Venezuelans displaced abroad", "Asylum-seekers", "Refugees")))) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +
+  labs(title = "Total number of international displacement",
+       subtitle = "Refugees, Asylum-seekers and Venezuelans displaced abroad\nfrom 2010 to 2019",
+       caption = "Source: UNHCR Data Finder",
+       x = "") +
+  scale_y_continuous(labels = scales::label_number_si(),
+                     limits = c(NA, 30000000)) +
+* scale_fill_manual(values = usecol(pal = c(unhcr_green, unhcr_darkblue, unhcr_blue)))
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/bar-step7-1.png)&lt;!-- --&gt;
+
+]
+
+---
+class: center, middle
+
+# Your turn
+
+### Go to workshop_plot_exercise.Rmd and let's work on Exercise 1
+### The file also includes results
+
+---
+
+## Line chart
+
+.pull-left[
+
+
+Develop a line chart of total refugees from 2000 to 2019.
+
+**The dataset:**
+
+
+```r
+evo_disp &lt;- popdata %&gt;% 
+  filter(Year &gt;=2000) %&gt;% 
+  group_by(Year) %&gt;% 
+  summarise(Refugees = sum(REF, na.rm = TRUE),
+            `IDPs` = sum(IDP, na.rm = TRUE),
+            `Asylum-seekers` = sum(ASY, na.rm = TRUE),
+            `Stateless` = sum(STA, na.rm = TRUE),
+            `Other of concern` = sum(OOC, na.rm = TRUE),
+            `Venezuelans displaced abroad` = sum(VDA, na.rm = TRUE))
+```
+
+
+]
+
+.pull-right[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Refugees &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; IDPs &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Asylum-seekers &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Stateless &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Other of concern &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Venezuelans displaced abroad &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10129080 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5698501 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 947322 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1553841 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12116301 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5096502 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 943383 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 839510 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10493526 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4446641 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1093121 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 853319 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2003 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9592279 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4181701 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 995567 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 805344 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2004 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9572778 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3426539 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 884285 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1155861 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 497042 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2005 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8661294 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4216791 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 801119 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1583651 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 660359 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+
+.pull-left[
+
+**Step 1:** Add data, map to the aesthetic and add a geom
+
+
+```r
+ggplot(data = evo_disp) +
+* aes(x = Year, y=Refugees, group = 1) + # Important add the grouping
+  geom_line()
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/line-step1-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+.pull-left[
+
+**Step 2:** Apply unhcr_theme, color the line and add title
+
+
+```r
+ggplot(data = evo_disp) +
+  aes(x = Year, y=Refugees, group = 1) +
+* geom_line(color = unhcr_blue, size = 1) +
+* unhcr_theme() +
+  labs(title = "Total number of refugees",
+       subtitle = "Evolution of refugee population 2000-2019",
+       caption = "Source: UNHCR Data Finder")
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/line-step2-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+.pull-left[
+
+**Step 3:** Clean axis
+
+
+```r
+library(scales)
+ggplot(data = evo_disp) +
+  aes(x = Year, y=Refugees, group = 1) +
+  geom_line(color = unhcr_blue, size = 1) +
+  unhcr_theme(grid = "Yy") +
+  labs(title = "Total number of refugees",
+       subtitle = "Evolution of refugee population 2000-2019",
+       caption = "Source: UNHCR Data Finder") +
+* scale_y_continuous(labels = scales::label_number_si(),
+*                    name = "Number of refugees",
+*                    limits = c(5000000, 25000000)) +
+* scale_x_discrete(breaks = c(2000,2005, 2010, 2015, 2019), name = "")
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/line-step3-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+**What if I want to add a line for IDP?**
+
+--
+
+Need to rework the data before because with this structure I can't add any variable to the color. In ggplot data needs to be **tidy**. 
+
+--
+
+.pull-left[
+
+
+
+```r
+evo_disp_tidy &lt;- evo_disp  %&gt;% 
+  pivot_longer(cols = c("Refugees",
+                        "IDPs"),
+               values_to = "Number of displaced", names_to = "Population type")
+```
+
+
+]
+
+.pull-right[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Asylum-seekers &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Stateless &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Other of concern &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Venezuelans displaced abroad &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Population type &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Number of displaced &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 947322 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1553841 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Refugees &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10129080 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 947322 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1553841 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; IDPs &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5698501 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 943383 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 839510 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Refugees &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12116301 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 943383 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 839510 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; IDPs &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5096502 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1093121 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 853319 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Refugees &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10493526 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1093121 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 853319 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; IDPs &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4446641 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+.pull-left[
+
+
+
+```r
+ggplot(data = evo_disp_tidy) +
+  aes(x = Year, y= `Number of displaced`, color = `Population type`, group = `Population type`) +
+  geom_line(size = 1) +
+  unhcr_theme(grid = "Yy") +
+  labs(title = "Total of displacment by population type",
+       subtitle = "Evolution of displaced population 2000-2019",
+       caption = "Source: UNHCR Data Finder") +
+  scale_y_continuous(labels = scales::label_number_si(), 
+                     name = "Number of person",
+                     limits = c(0, 50000000)) + 
+  scale_x_discrete(breaks = c(2000,2005, 2010, 2015, 2019), name = "") +
+  scale_color_manual(values = usecol(pal = c(unhcr_green, unhcr_blue)))
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/line-step4-1.png)&lt;!-- --&gt;
+
+]
+
+---
+class: center, middle
+
+# Your turn
+
+### Go to workshop_plot_exercise.Rmd and let's work on Exercise 2
+### The file also includes results
+
+---
+
+## Pie chart
+
+.pull-left[
+
+
+Develop a pie chart of the proportion of the refugee population against the total displaced population in 2019.
+
+**The dataset:**
+
+
+```r
+total_refugee &lt;- popdata %&gt;% 
+  filter(Year == 2019) %&gt;% 
+  group_by(Year) %&gt;% 
+  summarise(value = sum(REF, na.rm = TRUE)) %&gt;% 
+  mutate(type = "Refugees")
+
+total_other &lt;- popdata %&gt;% 
+  filter(Year ==2019) %&gt;% 
+  group_by(Year) %&gt;% 
+  summarise(value = sum(IDP, VDA, ASY, STA, OOC, na.rm = TRUE)) %&gt;% 
+  mutate(type = "All of displaced")
+
+pie_df &lt;- rbind(total_refugee, total_other)
+```
+
+
+]
+
+.pull-right[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Year &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; value &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; type &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20444819 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Refugees &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2019 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60536360 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; All of displaced &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+class: middle
+
+**Step 1:** Add data, map to the aesthetic and add a geom
+
+.pull-left[
+
+
+
+```r
+ggplot(data = evo_disp) +
+  aes(x = value, fill = type) +
+* geom_pie()
+```
+
+### geom_pie doesn't exist but what is a pie chart??
+
+]
+
+--
+
+.pull-right[
+
+### It's simply a 100% stacked bar chart that has been rotated.
+
+### This is where the coordinates of ggplot become handy
+
+]
+
+---
+
+**Step 1:** Add data, map to the aesthetic and add a geom
+
+.pull-left[
+
+
+
+```r
+ggplot(data = pie_df) +
+* aes(x = "", y = value, fill = type) +
+* geom_bar(stat = "identity", width = 1)
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/pie-step1-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+**Step 2:** Change coordinate system to polar
+
+.pull-left[
+
+
+
+```r
+ggplot(data = pie_df) +
+  aes(x = "", y = value, fill = type) + 
+  geom_bar(stat = "identity", width = 1) +
+* coord_polar("y", start=0)
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/pie-step2-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+**Step 3:** Improve appearance
+
+.pull-left[
+
+
+
+```r
+ggplot(data = pie_df) +
+  aes(x = "", y = value, fill = type) + 
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start=0) +
+* theme_void() +
+  scale_fill_manual(values = usecol(c(unhcr_pal_grey[2], unhcr_blue)))
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/pie-step3-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+**Step 4:** Labeling
+
+.pull-left[
+
+This can be tricky so please see below the example
+
+
+```r
+# Compute the position of labels
+pie_df2 &lt;- pie_df %&gt;%
+* mutate(prop = value / sum(pie_df$value) *100) %&gt;% # Calculate proportion
+* mutate(ypos = cumsum(prop)- 0.5*prop ) # Calculate position based on proportion
+
+# Apply to the pie chart
+ggplot(data = pie_df2) +
+  aes(x = "", y = prop, fill = type) + 
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  theme(legend.position="none") +
+  scale_fill_manual(values = usecol(c(unhcr_pal_grey[2], unhcr_pal_blue[3]))) +
+* geom_text(aes(y = ypos, label = paste0(type, ": ", round(prop, digits = 1), "%" ), size = 6))
+```
+
+
+]
+
+.pull-right[
+
+![](unhcRstyle_workshop_presentation_files/figure-html/pie-step4-1.png)&lt;!-- --&gt;
+
+]
+
+---
+class: center, middle
+
+# Your turn
+
+### Go to workshop_plot_exercise.Rmd and let's work on Exercise 3
+### The file also includes results
+
+---
+
+## Interesting packages for ggplot
+
+- Patchwork to bind multiple plots on one
+
+- Gganimate to create simple animation
+
+- Ggtext and ggrepel to deal with annotation and text style
+
+- Ggforce to group some content visually
+
+- and much more.... just go out there and experiment
+
+---
+class: center, middle, inverse
+
+# UNHCR Paged Report
+
+### Demo of the use of paginated html report.
+
+### Go to report folder for some examples and documentation
+
+---
+class: center, middle, inverse
+
+# Thank you
+
+### Good luck in your R journey
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

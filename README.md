@@ -12,3 +12,8 @@ for the production of UNHCR branded products, as well as some basic
 `ggplot` techniques for beginners.
 
 *Workshop material*
+
+-   [Presentation](https://github.com/vidonne/unhcRstyle_workshop/tree/master/presentation)
+-   [Exercise]()
+-   [Report demo result]()
+-   [Report documentation]()
