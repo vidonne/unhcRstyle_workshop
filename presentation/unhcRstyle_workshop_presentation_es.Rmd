@@ -636,7 +636,7 @@ class: center, middle, inverse
 
 ## Básicos
 
-1.Todos los gráficos utilizarán los dos conjuntos de datos siguientes:
+1. Todos los gráficos utilizarán los dos conjuntos de datos siguientes:
     - **End-year population figures** from [unhcrdatapackage](https://github.com/unhcr/unhcrdatapackage)
     - **Colombia 4W** previamente limpiado durante el entrenamiento básico de R
 2. Utilizaremos una técnica incremental para entender claramente el efecto de cada línea de código en nuestros gráficos
