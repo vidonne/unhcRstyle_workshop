@@ -1,9 +1,9 @@
 ---
-title: "Data Visualization Training"
-subtitle: "Session 2 unhcRstyle"
+title: "Entrenamiento visualización de datos"
+subtitle: "Sesión 2 R estilo ACNUR"
 author: "Cedric Vidonne"
-institute: "UNHCR"
-date: "March 2021"
+institute: "ACNUR"
+date: "marzo 2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -20,40 +20,42 @@ layout: true
 
 ---
 
-# Learning objectives
+# Objetivos de aprendizaje
 
-**About today:**
+**Sobre el día de hoy:**
 
-- Introduction to [**ggplot2**](https://ggplot2.tidyverse.org/index.html) and basic of grammar of graphics
-- Best practices and use of [**unhcr_theme**](https://github.com/UNHCR-WEB/unhcRstyle)
-- Basic of [**Rmarkdown**](https://bookdown.org/yihui/rmarkdown/) and use of the UNHCR report template
+- Introducción  a  [**ggplot2**](https://ggplot2.tidyverse.org/index.html) y a la gramática básica de los gráficos
+- Mejores prácticas y uso de  [**unhcr_theme**](https://github.com/UNHCR-WEB/unhcRstyle)
+- Fundamentos de  [**Rmarkdown**](https://bookdown.org/yihui/rmarkdown/) ay uso de la plantilla de informe del ACNUR
 
-**Not today:**
+**Hoy no:**
 
-- Data import: [readr](https://readr.tidyverse.org/), [readxl](), etc.
-- Data manipulation: [dplyr](https://dplyr.tidyverse.org/), [tidyr](https://tidyr.tidyverse.org/), etc.
-- R programming: [R for Data Science](https://r4ds.had.co.nz/), [Advanced R Programming](https://adv-r.hadley.nz/), etc.
+- Importación de dato: [readr](https://readr.tidyverse.org/), [readxl](), etc.
+- Manipulación de datos: [dplyr](https://dplyr.tidyverse.org/), [tidyr](https://tidyr.tidyverse.org/), etc.
+- Programación en R: [R for Data Science](https://r4ds.had.co.nz/), [Advanced R Programming](https://adv-r.hadley.nz/), etc.
 
 ---
 class: center, middle, inverse
 
 # Ggplot2
 
-### The grammar of graphics
+### La gramática de los gráficos
 
 ---
 
-## Grammar of graphic
+## La gramática del gráfico
 
-- A book of Leland Wilkinson in 1999
-- A theoretical **deconstruction of data graphics**
+- Un libro de Leland Wilkinson en 1999
+- Una **deconstrucción teórica de los gráficos de datos**
 - Foundation for many graphic applications such as ggplot and Tableau
 
-## The idea
 
-- Not to start with the final form of the graphic
-- What does it take to create a graphic?
-- **Decompose graphics** into its constituents
+## La idea
+
+- No empezar con la forma final de la gráfica
+- Qué se necesita para crear una gráfica?
+- **Descomponer los gráficos** en sus componentes
+
 
 ---
 class: center
@@ -63,41 +65,45 @@ class: center
 [@CedSherer](https://twitter.com/CedScherer/status/1229418108122783744?s=20)
 
 ???
-**Data**
-- Data is not just data
-- Representation defines what can be done with it
-- Grammar requires a tidy format (though it precedes the notion) 
+**Datos**
+- Los datos no son solo datos
+- La representación define lo que se puede hacer con ellos
+- La gramática require un formato ordenado (aunque precede a la noción) 
 
-**Aesthetics**
-- Allow generic datasets to be understood by the graphic system.
-- Link variables in data to graphical properties in the geometry.
 
-**Layers**
+**Estética**
+- Permitir que los conjuntos de datos genéricos sean comprendidos por el sistema gráfico.
+- Vincular las variables de los datos a las propiedades gráficas de la geometría.
+
+
+**Capas**
 1. Geom
-    - How to interpret aesthetics as graphical representations
-    - Is a progression of positional aesthetics a number of points, a line, a single polygon, or something else entirely?
-2. Stats
-    - Transform input variables to displayed values
-    - Is implicit in many plot-types but can often be done prior to plotting
+    - Cómo interpretar la estética como representaciones gráficas
+    - Una progresión de la estética posicional es un número de puntos, una línea, un solo polígono o algo totalmente distinto? 
+2. Estadísticas 
+- Transformar las variables de entrada en valores mostrados
+    - Está implícito en muchos tipos de gráficos, pero a menudo puede hacerse antes de trazarlos
+
 
 **Scales**
 - A scale translate back and forth between variable ranges and property ranges
     - Categories > Colour
     - Numbers > Position
 
-**Coordinates**
-- Defines the physical mapping of the aesthetics to the paper 
+**Escalas**
+- Una escala traduce hacia adelante y hacia atrás entre rangos de variables y rangos de propiedades   
 
-**Facets**
-- Define the number of panels with equal logic and split data among them…
-- Small multiples 
+**Facetas**
+- Define el número de paneles con igual lógica y reparte los datos entre ellos...
+- Múltiplos pequeños
 
-**Themes**
-- Theming spans every part of the graphic that is not linked to data
+
+**Temas**
+- La tematización abarca todas las partes del gráfico que no están vinculadas a los datos
 
 ---
 
-## Structure of ggplot in action
+## Estructura de ggplot en acción
 
 ```{r load, comment='#', include=FALSE}
 library(tidyverse)
@@ -144,11 +150,11 @@ ref_idp_year <- popdata %>%
   dplyr::mutate(`Number of people (in million)` = round(`Number of people`/1000000, digits = 1))
 ```
 
-We will try to cover the different aspect of the ggplot structure with one simple plot representing the cumulative number of Refugees and IDPs from 2010 to 2019.
+Intentaremos cubrir los diferentes aspectos de la estructura ggplot con un simple gráfico que represente el número acumulado de refugiados y desplazados internos desde 2010 hasta 2019.
 
 .pull-left[
 
-**Packages**
+**Paquetes**
 
 ```{r, eval=FALSE}
 library(tidyverse)
@@ -159,7 +165,7 @@ library(unhcrdatapackage)
 
 .pull-right[
 
-**Sample of the data**
+**Muestra de los datos**
 
 ```{r, echo=FALSE}
 knitr::kable(head(ref_idp_year), format = 'html')
@@ -400,7 +406,7 @@ ggplot(data = ref_idp_year) +
 
 .pull-left[
 
-**What if we want to add a line?**
+**Qué pasa si queremos añadir una línea?**
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = ref_idp_year) +
@@ -449,7 +455,7 @@ ggplot(data = ref_idp_year) +
 
 .pull-left[
 
-**What if we want to add a line?**
+**Qué pasa si queremos añadir una línea?**
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = ref_idp_year) +
@@ -497,17 +503,18 @@ class: center, middle, inverse
 
 #unhcRstyle
 
-### Apply UNHCR brand to R created content
+### Aplicar la marca ACNUR al contenido creado en R
 
 ---
 
-## Contents
+##  Contenido
 
-1. Ggplot theme
-2. Color palettes
-3. Report templates
+1. Tema Ggplot 
+2. Paleta de colores
+3. Plantillas de reportes
 
-## Installation
+
+## Instalación
 
 ```{r, eval=FALSE, comment='#'}
 remotes::install_github('unhcr-web/unhcRstyle')
@@ -534,13 +541,13 @@ ggplot_structure_ex <- ggplot(data = ref_idp_year) +
 
 .pull-left[
 
-## Ggplot theme
+## Tema Ggplot
 
-- Common UNHCR visual identity elements packed into one ggplot theme.
+- Elementos comunes de la identidad visual de ACNUR empaquetados en un tema ggplot.
 
-- Simply call .lead[`unhcr_theme()`] function within the flow of your plot creation code. 
+- Simplemente llame a la función .lead[`unhcr_theme()`] dentro del flujo de su código de creación de gráficos. 
 
-- The function comes with a lot of customizable elements use .lead[`?unhcr_theme()`] to learn more about it
+- La función viene con una gran cantidad de elementos personalizados use .lead[`?unhcr_theme()`] para saber más sobre ella
 
 ```{r, eval=FALSE, comment='#'}
 ggplot_structure_ex +
@@ -562,13 +569,13 @@ ggplot_structure_ex +
 
 .pull-left[
 
-## Color palettes
+## Paleta de colores
 
-- Definition of standard UNHCR color palettes (`unhcr_pal_primary`, `unhcr_pal_graphic`) as well as tints and shades (`unhcr_pal_blue`, `unhcr_pal_green`, etc.).
+- Definición de las paletas de colores estándar del ACNUR  (`unhcr_pal_primary`, `unhcr_pal_graphic`) Así como de las tintes y matices (`unhcr_pal_blue`, `unhcr_pal_green`, etc.).
 
-- Definition of simple name for main UNHCR colors (`unhcr_blue`, `unhcr_green`, etc.).
+- Definición de un nombre simple para los principales colores (`unhcr_blue`, `unhcr_green`, etc.).
 
-- 2 function to see and use the colors:
+- 2 funciones para ver y utilizar los colores:
     - `seecol()`
     - `usecol()`
 
@@ -591,17 +598,17 @@ seecol(pal = unhcr_pal_primary)
 
 .pull-left[
 
-## Report templates
+## Plantillas de reportes 
 
-All based on Rmarkdown that allow to create multiple outputs from the same content format.
+Todas basadas en Rmarkdown que permiten crear múltiples salidas a partir del mismo formato de contenido.
 
-- Paginated report built on the top of pagedown.
+- Informe paginado construido sobre el pagedown.
 
-- Analysis Repository contribution
+- Contribución al repositorio de análisis
 
-- Word with UNHCR style
+- Word con estilo ACNUR
 
-- Powerpoint with UNHCR style
+- Powerpoint con estilo ACNUR
 
 - html/bootstrap -scroll-able report
 
@@ -612,7 +619,7 @@ All based on Rmarkdown that allow to create multiple outputs from the same conte
 
 .pull-right[
 
-Access them **"From Template"** panel when creating a new Rmd document
+Acceder a ellos **"Desde las plantilla"** panel al crear un nuevo documento Rmd
 
 ![UNHCR Rmd templates](images/rmd_templates.png)
 
@@ -623,21 +630,21 @@ class: center, middle, inverse
 
 # Demo/Exercises
 
-### Let's practice
+### Vamos a practicar
 
 ---
 
-## Basics
+## Básicos
 
-1. All the plots  will be using the 2 following datasets:
+1.Todos los gráficos utilizarán los dos conjuntos de datos siguientes:
     - **End-year population figures** from [unhcrdatapackage](https://github.com/unhcr/unhcrdatapackage)
-    - **Colombia 4W** previously cleaned during basic R training
-2. We will use an incremental technique to understand clearly the effect of each line of code on our plots
-3. We won't spend time on the data manipulation part but we will present the structure of the dataset for each examples.
-4. We will be using packages from [tidyverse](https://www.tidyverse.org/) and mainly [ggplot2](https://ggplot2.tidyverse.org/). If any other packages are needed for a specific plot, it will be clearly stated in the code.
-5. For the UNHCR part, we will use the [unhcrdatapackage](https://github.com/unhcr/unhcrdatapackage) for data and the [unhcRstyle](https://github.com/UNHCR-WEB/unhcRstyle) package for all the visual aspect.
+    - **Colombia 4W** previamente limpiado durante el entrenamiento básico de R
+2. Utilizaremos una técnica incremental para entender claramente el efecto de cada línea de código en nuestros gráficos
+3. No dedicaremos tiempo a la parte de manipulación de los datos, pero presentaremos la estructura del conjunto de datos para cada uno de los ejemplos.
+4. Utilizaremos paquetes de  [tidyverse](https://www.tidyverse.org/) y principalmente  [ggplot2](https://ggplot2.tidyverse.org/). Si se necesita algún otro paquete para un gráfico específico, se indicará claramente en el código.
+5. Para la parte de ACNUR, utilizaremos el paquete de [unhcrdatapackage](https://github.com/unhcr/unhcrdatapackage) para los datos y el paquete de [unhcRstyle](https://github.com/UNHCR-WEB/unhcRstyle) para todo el aspecto visual.
 
-Make sure to install all the required packages before the exercises:
+Asegúrate de instalar todos los paquetes necesarios antes de realizar los ejercicios:
 
 ```{r install, comment='#', eval=FALSE}
 install.packages('tidyverse')
@@ -647,14 +654,14 @@ remotes::install_github('unhcr-web/unhcRstyle')
 
 ---
 
-## Bar chart
+## Gráfico de barras
 
 .pull-left[
 
 
-Develop a bar chart of total international displacement (refugees, asylum-seekers and Venezuelans displaced abroad) from 2010 to 2019.
+Desarrollar un gráfico de barras del total de desplazamientos internacionales (refugiados, solicitantes de asilo y venezolanos desplazados al exterior) desde 2010 hasta 2019.
 
-**The dataset:**
+**El conjunto de datos:**
 
 ```{r, comment='#'}
 int_displ <- popdata %>% 
@@ -683,7 +690,7 @@ knitr::kable(head(int_displ), format = 'html')
 
 .pull-left[
 
-**Step 1:** Add data, map to the aesthetic and add a geom
+**Paso 1:** Añadir datos, mapear a la estética y añadir un geom
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = int_displ) +
@@ -708,7 +715,7 @@ ggplot(data = int_displ) +
 
 .pull-left[
 
-**Step 2:** Rotate the axis for easier comparison and apply unhcr_theme
+**Paso 2:** Girar el eje para facilitar la comparación y aplicar unhcr_theme
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = int_displ) +
@@ -737,7 +744,7 @@ ggplot(data = int_displ) +
 
 .pull-left[
 
-**Step 3:** Add information about the graph and define active gridline in unhcr_theme
+**Paso 3:** Añadir información sobre el gráfico y definir la línea de cuadrícula activa en unhcr_theme
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = int_displ) +
@@ -772,7 +779,7 @@ ggplot(data = int_displ) +
 
 .pull-left[
 
-**Step 4:** Change color of bars
+**Paso 4:** Cambiar el color de las barras
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = int_displ) +
@@ -809,7 +816,7 @@ ggplot(data = int_displ) +
 
 .pull-left[
 
-**Step 4:** Change color of bars
+**Paso 4:** Cambiar el color de las barras 
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = int_displ) +
@@ -845,7 +852,7 @@ ggplot(data = int_displ) +
 
 .pull-left[
 
-**Step 5:** Clean subtitle and improve axis labeling and limits
+**Paso 5:** Limpiar el subtítulo y mejorar el nombre de los ejes y los límites 
 
 ```{r, eval=FALSE, comment='#'}
 library(scales) #<<
@@ -886,7 +893,7 @@ ggplot(data = int_displ) +
 
 ---
 
-**What if I want to show the different population type?**
+**Qué pasa si quiero mostrar los diferentes tipos de población?**
 
 --
 
@@ -931,7 +938,7 @@ ggplot(data = int_displ) +
 
 .pull-left[
 
-Apply UNHCR colors and reorder classes to be more easily comparable
+Aplicar los colores UNHCR y reordenar las clases para que sean más fácilmente comparables
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = int_displ) +
@@ -975,21 +982,22 @@ ggplot(data = int_displ) +
 ---
 class: center, middle
 
-# Your turn
+# Su turno 
 
-### Go to workshop_plot_exercise.Rmd and let's work on Exercise 1
-### The file also includes results
+### Vaya a workshop_plot_exercise.Rmd y trabajemos en el Ejercicio 1
+### El archivo también incluye resultados
+
 
 ---
 
-## Line chart
+## Gráfico de líneas
 
 .pull-left[
 
 
-Develop a line chart of total refugees from 2000 to 2019.
+Desarrollar un gráfico de líneas del total de refugiados desde 2000 hasta 2019.
 
-**The dataset:**
+**El conjunto de datos:**
 
 ```{r, comment='#'}
 evo_disp <- popdata %>% 
@@ -1019,7 +1027,7 @@ knitr::kable(head(evo_disp), format = 'html')
 
 .pull-left[
 
-**Step 1:** Add data, map to the aesthetic and add a geom
+**Paso 1:** Añadir datos, mapa a la estética y añadir un geom
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = evo_disp) +
@@ -1044,7 +1052,7 @@ ggplot(data = evo_disp) +
 
 .pull-left[
 
-**Step 2:** Apply unhcr_theme, color the line and add title
+**Paso 2:** Aplicar unhcr_theme, colorear la línea y agregar el título 
 
 ```{r, eval=FALSE, comment='#'}
 ggplot(data = evo_disp) +
@@ -1077,7 +1085,7 @@ ggplot(data = evo_disp) +
 
 .pull-left[
 
-**Step 3:** Clean axis
+**Paso 3:** Limpiar el eje
 
 ```{r, eval=FALSE, comment='#'}
 library(scales)
@@ -1117,11 +1125,12 @@ ggplot(data = evo_disp) +
 
 ---
 
-**What if I want to add a line for IDP?**
+**¿Qué pasa si quiero añadir una línea para IDPs?**
 
 --
 
-Need to rework the data before because with this structure I can't add any variable to the color. In ggplot data needs to be **tidy**. 
+
+Necesito rehacer los datos antes porque con esta estructura no puedo añadir ninguna variable al color. En ggplot los datos tienen que estar **ordenados**
 
 --
 
@@ -1191,21 +1200,22 @@ ggplot(data = evo_disp_tidy) +
 ---
 class: center, middle
 
-# Your turn
+# Su turno
 
-### Go to workshop_plot_exercise.Rmd and let's work on Exercise 2
-### The file also includes results
+### Vaya a workshop_plot_exercise.Rmd y trabajemos en el Ejercicio 2
+### El archivo también incluye resultados
+
 
 ---
 
-## Pie chart
+## Gráfica de torta
 
 .pull-left[
 
 
-Develop a pie chart of the proportion of the refugee population against the total displaced population in 2019.
+Elabore una gráfica de torta de la proporción de la población refugiada frente al total de la población desplazada en 2019.
 
-**The dataset:**
+**Conjunto de datos:**
 
 ```{r, comment='#'}
 total_refugee <- popdata %>% 
@@ -1238,7 +1248,7 @@ knitr::kable(head(pie_df), format = 'html')
 ---
 class: middle
 
-**Step 1:** Add data, map to the aesthetic and add a geom
+**Paso 1:** Añadir los datos, el mapa a la estética y añadir un geom
 
 .pull-left[
 
@@ -1249,7 +1259,7 @@ ggplot(data = evo_disp) +
   geom_pie() #<<
 ```
 
-### geom_pie doesn't exist but what is a pie chart??
+### geom_pie no existe pero ¿qué es una gráfica de torta???
 
 ]
 
@@ -1257,15 +1267,15 @@ ggplot(data = evo_disp) +
 
 .pull-right[
 
-### It's simply a 100% stacked bar chart that has been rotated.
+### Es simplemente un gráfico de barras apilado al 100% que ha sido rotado.
 
-### This is where the coordinates of ggplot become handy
+### Aquí es donde las coordenadas de ggplot se vuelven útiles
 
 ]
 
 ---
 
-**Step 1:** Add data, map to the aesthetic and add a geom
+**Paso 1:** Añadir datos, mapear a la estética y añadir un geom
 
 .pull-left[
 
@@ -1291,7 +1301,7 @@ ggplot(data = pie_df) +
 
 ---
 
-**Step 2:** Change coordinate system to polar
+**Paso 2:** Cambiar el sistema de coordenadas a polar
 
 .pull-left[
 
@@ -1319,7 +1329,7 @@ ggplot(data = pie_df) +
 
 ---
 
-**Step 3:** Improve appearance
+**Paso 3:** Mejorar la apariencia
 
 .pull-left[
 
@@ -1351,11 +1361,11 @@ ggplot(data = pie_df) +
 
 ---
 
-**Step 4:** Labeling
+**Paso 4:** Etiquetado
 
 .pull-left[
 
-This can be tricky so please see below the example
+Esto puede ser complicado, así que por favor, vea a continuación el ejemplo
 
 ```{r, eval=FALSE, comment='#'}
 # Compute the position of labels
@@ -1401,24 +1411,25 @@ ggplot(data = pie_df2) +
 ---
 class: center, middle
 
-# Your turn
+# Su turno
 
-### Go to workshop_plot_exercise.Rmd and let's work on Exercise 3
-### The file also includes results
+### Vaya al workshop_plot_exercise.Rmd y trabajemos en el Ejercicio 3
+### El archivo también incluye resultados
+
 
 ---
 
-## Interesting packages for ggplot
+## Paquetes interesantes para ggplot
 
-- Patchwork to bind multiple plots on one
+- Patchwork para unir múltiples gráficos en uno
 
-- Gganimate to create simple animation
+- Gganimate para crear animaciones simples
 
-- Ggtext and ggrepel to deal with annotation and text style
+- Ggtext y ggrepel para tratar la anotación y el estilo del texto
 
-- Ggforce to group some content visually
+- Ggforce para agrupar algunos contenidos visualmente
 
-- and much more.... just go out there and experiment
+- y mucho más.... sólo hay que salir y experimentar
 
 ---
 
@@ -1450,15 +1461,15 @@ class: middle, center
 ---
 class: center, middle, inverse
 
-# UNHCR Paged Report
+# Reporte de páginas de ACNUR
 
-### Demo of the use of paginated html report.
+### Demostración del uso del reporte html paginado.
 
-### Go to report folder for some examples and documentation
+### Ir a la carpeta de reportes para algunos ejemplos y documentos 
 
 ---
 
-## Resources
+## Recursos
 
 ### Ggplot:
 
@@ -1475,6 +1486,7 @@ class: center, middle, inverse
 ---
 class: center, middle, inverse
 
-# Thank you
+# Gracias
 
-### Good luck in your R journey
+### Buena suerte en su viaje con R
+

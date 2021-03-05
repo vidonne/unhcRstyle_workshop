@@ -1,0 +1,235 @@
+---
+title: "unhcRstyle Workshop Plot Exercise"
+author: "Cedric Vidonne"
+date: "marzo 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  echo = TRUE,
+  comment = "#>",
+  dev = 'ragg_png',
+  dpi = 300,
+  warning = FALSE
+)
+```
+
+## Instalar y cargar los paquetes necesarios
+
+```{r load-packages}
+# Descomente las líneas siguientes si no tiene los paquetes instalados
+# install.packages(c('tidyverse', 'readxl', 'scales'))
+# remotes::install_github('unhcr/unhcrdatapackage')
+# remotes::install_github('unhcr-web/unhcRstyle')
+library(tidyverse)
+library(unhcrdatapackage)
+library(unhcRstyle)
+library(readxl)
+library(scales)
+```
+
+## Cargar y limpiar los conjuntos de datos necesarios
+
+```{r load-data}
+# End of year populatiuon from UNHCR Data finder
+popdata <- unhcrdatapackage::end_year_population_totals
+
+# 4W data from Colombia
+data_4W <- read_excel("data/4W_Publico_Consolidado_septiembre.xlsx")
+
+# Manipular para conseguir el mismo escenario que el taller básico de R
+data_4W %>%
+  mutate(Municipio = str_to_lower(Municipio),
+         Municipio = str_replace_all(Municipio, "á", "a"),
+         Municipio = str_replace_all(Municipio, "í", "i"),
+         Municipio = str_replace_all(Municipio, "ó", "o"),
+         Municipio = str_replace_all(Municipio, "é", "e"),
+         Municipio = str_replace_all(Municipio, "ú", "u")) %>%
+  distinct(Municipio)
+
+data_4W %>%
+  mutate(Departamento = str_to_lower(Departamento)) %>%
+  distinct(Departamento)
+
+length(union(data_4W$`Socio principal`, data_4W$`Socio implementador`))
+
+data_4W %>%
+  filter(Estado == "Completada") %>%
+  summarise(sum(Cantidad, na.rm = TRUE))
+
+data_4W %>%
+  filter(Estado == "Completada") %>%
+  summarise(sum(`Beneficiarios mensuales`, na.rm = TRUE))
+
+```
+
+## Gráfico de barras
+
+**Ejercicio 1:** Crear un gráfico de barras del número de actividad por sector utilizando el tema unhcr_theme y jugando con el aspecto visual.
+
+Hay dos formas de representar el gráfico de barras con geom_bar o geom_col. La principal diferencia es que geom_bar viene con un stat de count por defecto. Esto se puede sobreescribir con `stats = "identity"` (ver los resultados más abajo para los ejemplos).
+
+**Avanzado** ordenarlo por número de actividad y colorearlo por parte del RMRP o no.
+
+Traducción realizada con la versión gratuita del traductor www.DeepL.com/Translator
+
+```{r bar-ex}
+# Place your code here
+
+```
+
+**Resultados:**
+
+```{r bar-sector}
+# Ejemplo utilizando geom_bar y contando simplemente el número de filas por sector.
+bar_sector <- ggplot(data = data_4W) +
+  aes(x = Sector) +
+  geom_bar(fill = unhcr_blue) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +
+  labs(title = "Number of activities per sector",
+       caption = "Source: 4W Colombia",
+       x = NULL,
+       y = "Number of activity")
+
+bar_sector
+
+bar_sector_sorted <- ggplot(data = data_4W) +
+  aes(x = forcats::fct_rev(forcats::fct_infreq(Sector))) + # Creates order by number of appearance and reverse it to have the maximum at the top.
+  geom_bar(fill = unhcr_blue) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +
+  labs(title = "Number of activities per sector",
+       caption = "Source: 4W Colombia",
+       x = NULL,
+       y = "Number of activity")
+
+bar_sector_sorted
+
+bar_sector_sorted_fill <- ggplot(data = data_4W) +
+  aes(x = forcats::fct_rev(forcats::fct_infreq(Sector))) + 
+  geom_bar(aes(fill = `Parte RMRP`)) + # Create fill colors
+  coord_flip() +
+  unhcr_theme(grid = "Xx", legend_title = TRUE) + # Add title to the legend
+  labs(title = "Number of activities per sector",
+       caption = "Source: 4W Colombia",
+       x = NULL,
+       y = "Number of activity") +
+  scale_fill_manual(values = usecol(pal = c(unhcr_red, unhcr_blue))) # Set colors to the fill
+
+bar_sector_sorted_fill
+```
+
+
+```{r col-sector}
+# Ejemplo utilizando geom_col. Primero hay que crear el recuento en los datos
+data_4W_counted <- data_4W %>% 
+  count(Sector, `Parte RMRP`, name = "count") %>% 
+  group_by(Sector) %>% 
+  mutate(total_count = sum(count)) %>% 
+  ungroup()
+
+col_sector <- ggplot(data = data_4W_counted) +
+  aes(x = Sector, y = count) +
+  geom_col(fill = unhcr_blue) + # or geom_bar(stat = "identity")
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +
+  labs(title = "Number of activities per sector",
+       caption = "Source: 4W Colombia",
+       x = NULL,
+       y = "Number of activity")
+
+col_sector
+
+col_sector_sorted <- ggplot(data = data_4W_counted) +
+  aes(x = reorder(Sector, total_count), y = count) +
+  geom_col(fill = unhcr_blue) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx") +
+  labs(title = "Number of activities per sector",
+       caption = "Source: 4W Colombia",
+       x = NULL,
+       y = "Number of activity")
+
+col_sector_sorted
+
+col_sector_sorted_fill <- ggplot(data = data_4W_counted) +
+  aes(x = reorder(Sector, total_count), y = count) +
+  geom_col(aes(fill = `Parte RMRP`)) +
+  coord_flip() +
+  unhcr_theme(grid = "Xx", legend_title = TRUE) +
+  labs(title = "Number of activities per sector",
+       caption = "Source: 4W Colombia",
+       x = NULL,
+       y = "Number of activity")  +
+  scale_fill_manual(values = usecol(pal = c(unhcr_red, unhcr_blue)))
+
+col_sector_sorted_fill
+
+```
+
+## Gráfico de líneas
+
+**Ejercicio 2:** Crear un gráfico de líneas del número de desplazados en Colombia desde el año 2000 hasta el 2019 utilizando el tema unhcr_theme y jugando con el aspecto visual.
+
+**Avanzado** añadir más tipo de población y etiquetar directamente las líneas.
+
+```{r line-ex}
+# Place your code here
+
+```
+
+**Resultados:**
+
+```{r line-result}
+# Trabajar en los datos
+displaced_col <- popdata %>% 
+  filter(CountryAsylumCode == "COL",
+         Year >= 2000) %>% 
+  group_by(Year) %>% 
+  summarise(IDP = sum(IDP, na.rm = TRUE))
+
+# Representar los datos
+ggplot(data = displaced_col) +
+  aes(x = Year, y=IDP, group = 1) +
+  geom_line(color = unhcr_green, size = 1) +
+  unhcr_theme(grid = "Yy") +
+  labs(title = "Total number of IDPs in Colombia",
+       subtitle = "Evolution of the IDP population 2000-2019",
+       caption = "Source: UNHCR Data Finder") +
+  scale_y_continuous(labels = scales::label_number_si(),
+                     name = "Number of IDP") +
+  scale_x_discrete(breaks = c(2000,2005, 2010, 2015, 2019), name = "")
+```
+
+## Gráfico torta
+
+**Ejercicio 3:** Crear un gráfico circular de la proporción de la Modalidad
+
+**Avanzado** añadir etiquetas directas y mejorar el orden de las rebanadas.
+
+```{r line-ex}
+# Coloque su código aquí
+
+```
+
+**Resultados:**
+
+```{r pie-result}
+# Trabajar en los datos
+modalidad <- data_4W %>% 
+  group_by(Modalidad) %>% 
+  summarise(count = n())
+
+# Representar los datos
+ggplot(data = modalidad) +
+  aes(x = "", y = count, fill = Modalidad) + 
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  scale_fill_manual(values = usecol(c(unhcr_pal_grey[2], unhcr_pal_blue[3]))) +
+  labs(title = "Proportion of CASH assistance",
+       caption = "Source: 4W Colombia")
+```
