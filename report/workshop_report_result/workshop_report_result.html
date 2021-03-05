@@ -19,7 +19,7 @@
 <meta name="description" content="Beautiful">
 
 <script id="pandoc-meta" type="application/json">
-{"newpage_html_class":"page-break-after","loa-title":"Acronyms","toc-title":"Contents","lof":"true","lof-title":"Figures","paged-footnotes":"true","links-to-footnotes":"true","date":"5 March 2021","subtitle":"Branded Report","lot":"true","output":{"unhcrthemes::unhcr_paged":{"self_contained":null,"toc":"true","css":["unhcr-generic-fonts.css","unhcr-generic-page.css","unhcr-generic.css"],"front_cover":"img/col_cover.jpg","number_sections":null,"back_cover":"unhcr-backcover.svg"}},"lot-title":"Tables","abstract-title":"My really important intro","author":[{"email":"<a href=\"mailto:vidonne@unhcr.org\" class=\"email\">vidonne@unhcr.org</a>","name":"Cedric Vidonne","affiliation":"IMO"},{"email":"<a href=\"mailto:contact2email@unhcr.org\" class=\"email\">contact2email@unhcr.org</a>","name":"Contact name2","affiliation":"Job title2"}],"abstract":"Tur, sequis sunt abor rempos molupiet lab ipsa natque con niminve llesequos derro restes serionet autasperit ut estrum, ut quia excero et vit voloreic torum quae erias earchil explique pe officabo","title":"Beautiful"}
+{"newpage_html_class":"page-break-after","loa-title":"Acronyms","toc-title":"Contents","lof":null,"lof-title":"Figures","paged-footnotes":"true","links-to-footnotes":"true","date":"5 March 2021","subtitle":"Branded Report","lot":null,"output":{"unhcrthemes::unhcr_paged":{"self_contained":null,"toc":"true","css":["unhcr-generic-fonts.css","unhcr-generic-page.css","unhcr-generic.css"],"front_cover":"img/col_cover.jpg","number_sections":null,"back_cover":"unhcr-backcover.svg"}},"lot-title":"Tables","abstract-title":"My really important intro","author":[{"email":"<a href=\"mailto:vidonne@unhcr.org\" class=\"email\">vidonne@unhcr.org</a>","name":"Cedric Vidonne","affiliation":"IMO"},{"email":"<a href=\"mailto:contact2email@unhcr.org\" class=\"email\">contact2email@unhcr.org</a>","name":"Contact name2","affiliation":"Job title2"}],"abstract":"Tur, sequis sunt abor rempos molupiet lab ipsa natque con niminve llesequos derro restes serionet autasperit ut estrum, ut quia excero et vit voloreic torum quae erias earchil explique pe officabo","title":"Beautiful"}
 </script>
 
 <title>Beautiful</title>
@@ -146,15 +146,26 @@ Tur, sequis sunt abor rempos molupiet lab ipsa natque con niminve llesequos derr
 <div id="TOC" class="level1 toc front-matter">
 <h1 class="toc-title">Contents</h1>
 <ul>
-<li><a href="#LOT">Tables</a></li>
-<li><a href="#LOF">Figures</a></li>
 <li><a href="#methodology">Methodology</a>
 <ul>
-<li><a href="#r-markdown">R Markdown</a></li>
-<li><a href="#preview-paged-html-report">Preview paged HTML report</a></li>
-<li><a href="#print-to-pdf">Print to PDF</a></li>
-<li><a href="#yaml-metadata">YAML metadata</a></li>
+<li><a href="#heading-2">Heading 2</a></li>
+<li><a href="#heading-2-1">Heading 2</a></li>
+</ul></li>
+<li><a href="#heading-1-will-go-to-a-new-page">Heading 1 will go to a new page</a>
+<ul>
+<li><a href="#heading-2-2">Heading 2</a>
+<ul>
+<li><a href="#heading-3">Heading 3</a></li>
+<li><a href="#heading-3-1">Heading 3</a></li>
+</ul></li>
+<li><a href="#heading-2-3">Heading 2</a></li>
+<li><a href="#heading-2-4">Heading 2</a></li>
+</ul></li>
+<li><a href="#heading-1-will-go-to-a-new-page-1">Heading 1 will go to a new page</a>
+<ul>
 <li><a href="#plots">Plots</a></li>
+<li><a href="#r-markdown">R Markdown</a></li>
+<li><a href="#even-code">Even code</a></li>
 <li><a href="#tables">Tables</a></li>
 </ul></li>
 </ul>
@@ -162,82 +173,276 @@ Tur, sequis sunt abor rempos molupiet lab ipsa natque con niminve llesequos derr
 </div>
 
 <div class="main">
-<div id="LOT" class="section level1 lot unnumbered front-matter">
-<h1>Tables</h1>
-<ul>
-<li><a href="#tab:table-simple">1</a> Table caption example</li>
-</ul>
-</div>
-<div id="LOF" class="section level1 lof unnumbered front-matter">
-<h1>Figures</h1>
-<ul>
-<li><a href="#fig:single-line">1</a> Plot caption example</li>
-</ul>
-</div>
 <div id="methodology" class="section level1">
 <h1>Methodology</h1>
 <div class="lead unhcr-grey">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.</p>
+<p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.</p>
 </div>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex condimentum facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.</p>
-<p>Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus posuere convallis. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.</p>
-<p>Maecenas tincidunt quis tellus ac feugiat. Nulla mi felis, convallis quis neque ac, volutpat fringilla risus. Cras condimentum egestas volutpat. Praesent gravida semper lectus eu sagittis. Phasellus tristique felis nec finibus iaculis. Maecenas ex justo, tristique vitae orci nec, pellentesque fringilla turpis. Morbi molestie sollicitudin enim, a aliquam purus iaculis in. Nunc iaculis metus ac lobortis consequat. Phasellus tempus varius molestie. Curabitur nec ultrices ligula. Nulla sed ex nulla.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex <em>condimentum</em> facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.</p>
+<div id="heading-2" class="section level2">
+<h2>Heading 2</h2>
+<p>Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus <strong>posuere convallis</strong>. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.</p>
+<p>Maecenas tincidunt quis tellus ac feugiat. Nulla mi felis, convallis quis neque ac, volutpat fringilla risus. Cras condimentum egestas volutpat. <strong><span class="unhcr-blue">Praesent gravida semper lectus eu sagittis.</span></strong> Phasellus tristique felis nec finibus iaculis. Maecenas ex justo, tristique vitae orci nec, pellentesque fringilla turpis. Morbi molestie sollicitudin enim, a aliquam purus iaculis in. Nunc iaculis metus ac lobortis consequat. Phasellus tempus varius molestie. Curabitur nec ultrices ligula. Nulla sed ex nulla.</p>
+<div class="img75">
+<p><img src="img/col_shelter.jpg" alt="Colombia Shelter" />
+<em>Visit of shelter site. © Best Photographer</em></p>
+</div>
+</div>
+<div id="heading-2-1" class="section level2">
+<h2>Heading 2</h2>
+<div class="bg-grey">
 <p>Nunc eget suscipit metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam in pulvinar nisi. Phasellus ullamcorper, lectus in egestas venenatis, turpis metus vulputate ex, cursus aliquam augue elit quis dui. Proin tellus elit, scelerisque sit amet tempus at, convallis sed lorem. Suspendisse hendrerit eleifend massa, ut congue augue viverra vel. Sed vel rhoncus neque. Etiam quis turpis nisi. Mauris nec sapien tellus. Etiam lectus tellus, posuere vel placerat eget, aliquam ut arcu. Aliquam eu velit sit amet magna facilisis maximus eget sit amet massa. Donec pretium ullamcorper mattis. Donec viverra nibh eu venenatis tempus. Mauris non malesuada velit.</p>
-<p>Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec felis lobortis blandit et quis elit. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.</p>
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span></code></pre></div>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
 </div>
-<div id="preview-paged-html-report" class="section level2">
-<h2>Preview paged HTML report</h2>
-<p>When you compile an R Markdown document to HTML in RStudio, RStudio will display the HTML page through a local web server, so paged.js will work in RStudio Viewer. However, when you view such pages in a real web browser, you will need a separate web server. The easiest way to preview these HTML pages in a web browser may be through the RStudio <strong>servr</strong> package, just type the following code in your R console and head to <a href="http://127.0.0.1:4321/" class="uri">http://127.0.0.1:4321/</a> in your browser to access the files.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load webserver to preview paged HTML </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>servr<span class="sc">::</span><span class="fu">httd</span>()</span></code></pre></div>
-</div>
-<div id="print-to-pdf" class="section level2">
-<h2>Print to PDF</h2>
-<p>The easiest way to print to PDF is with Google Chrome or Chromium using the menu “Print” or by pressing Ctrl + P (or Command + P on macOS). Remember to allow background graphics to be printed.</p>
-<p>There are also 2 other built-in ways:</p>
+<p>Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec <u>felis lobortis blandit et quis elit</u>. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.</p>
+<blockquote>
+<p>Complete quote should include 3 “&gt;” on 3 seperate lines</p>
+<p>Cedric Vidonne</p>
+</blockquote>
+<p>Nunc eget suscipit UNHCR<span id="fn1" class="footnote" style="white-space: pre-line;" data-pagedown-footnote-number="1">The UN Refugee Agency</span>. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam in pulvinar nisi. Phasellus ullamcorper, lectus in egestas venenatis, turpis metus vulputate ex, cursus aliquam augue elit quis dui. Proin tellus elit, scelerisque sit amet tempus at, convallis sed lorem. Suspendisse hendrerit eleifend massa, ut congue augue viverra vel.</p>
+<div id="heading-4" class="section level4">
+<h4>Heading 4</h4>
+<ul>
+<li>I’m the first item of a list</li>
+<li>I’m the second item of this list
 <ol style="list-style-type: decimal">
-<li>using the function pagedown::chrome_print(). Its first argument (input) accepts a path to a local Rmd or HTML file or an URL. Google Chrome or Chromium must be installed on your system.</li>
-<li>in RStudio, adding the following line in the YAML header of your Rmd file:</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>knit<span class="sc">:</span> pagedown<span class="sc">::</span>chrome_print</span></code></pre></div>
-<p>With this metadata parameter, the behavior of the “Knit” button of RStudio is modified: it produces both the HTML document and the PDF with Chrome. This functionality is suitable for any R Markdown HTML output format and is mainly convenient for small documents like presentations or notes.
-If chrome_print() cannot find Chrome or Chromium automatically, set the PAGEDOWN_CHROME environment variable to the path to Chrome or Chromium executable.</p>
+<li>I can be mixed with ordered list</li>
+<li>And even nested</li>
+</ol></li>
+<li>The last point of the list</li>
+</ul>
+<p>Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec <u>felis lobortis blandit et quis elit</u>. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.</p>
 </div>
-<div id="yaml-metadata" class="section level2">
-<h2>YAML metadata</h2>
-<p>A lot of components such as the table of contents, list of figures, etc. can be activated, deactivated or tweaked directly in the YAML at the top of the R Markdown document. Please refer at the guidance directly added there.</p>
-<p>See <a href="https://pagedown.rbind.io/#miscellaneous-features" class="uri">https://pagedown.rbind.io/#miscellaneous-features</a> for extra information on the YAML variables of the package.</p>
+</div>
+</div>
+<div id="heading-1-will-go-to-a-new-page" class="section level1">
+<h1>Heading 1 will go to a new page</h1>
+<div class="lead unhcr-grey">
+<p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.</p>
+</div>
+<p><abbr title="UNHCR, The UN Refugee Agency">UNHCR</abbr> ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex <em>condimentum</em> facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.</p>
+<div id="heading-2-2" class="section level2">
+<h2>Heading 2</h2>
+<div class="clearfix">
+<div class="img50 float-end">
+<div class="figure">
+<img src="img/col_vertical.jpg" alt="" />
+<p class="caption">Colombia Vertical</p>
+</div>
+</div>
+<p>Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus <strong>posuere convallis</strong>. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.</p>
+<div id="heading-5" class="section level5">
+<h5>Heading 5</h5>
+<ul>
+<li>Maecenas tincidunt quis tellus ac feugiat. Nulla mi felis, convallis quis neque ac, volutpat fringilla risus. Cras condimentum egestas volutpat. Praesent gravida semper lectus eu sagittis.</li>
+<li>Phasellus tristique felis nec finibus iaculis. Maecenas ex justo, tristique vitae orci nec, pellentesque fringilla turpis. Morbi molestie sollicitudin enim, a aliquam purus iaculis in.</li>
+<li>Nunc iaculis metus ac lobortis consequat. Phasellus tempus varius molestie. Curabitur nec ultrices ligula. Nulla sed ex nulla.</li>
+</ul>
+</div>
+</div>
+<div id="heading-3" class="section level3">
+<h3>Heading 3</h3>
+<p>Nunc eget suscipit metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam in pulvinar nisi. Phasellus ullamcorper, lectus in egestas venenatis, turpis metus vulputate ex, cursus aliquam augue elit quis dui. Proin tellus elit, scelerisque sit amet tempus at, convallis sed lorem. Suspendisse hendrerit eleifend massa, ut congue augue viverra vel. Sed vel rhoncus neque. Etiam quis turpis nisi. Mauris nec sapien tellus. Etiam lectus tellus, posuere vel placerat eget, aliquam ut arcu. Aliquam eu velit sit amet magna facilisis maximus eget sit amet massa. Donec pretium ullamcorper mattis. Donec viverra nibh eu venenatis tempus. Mauris non malesuada velit.</p>
+</div>
+<div id="heading-3-1" class="section level3">
+<h3>Heading 3</h3>
+<p>Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec <u>felis lobortis blandit et quis elit</u>. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.</p>
+</div>
+</div>
+<div id="heading-2-3" class="section level2">
+<h2>Heading 2</h2>
+<p>Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus <strong>posuere convallis</strong>. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.</p>
+<div id="table-of-displaced-population" class="section level5">
+<h5>Table of displaced population</h5>
+<p>Table are easily added with the <code>knitr::kable</code> function</p>
+<table>
+<caption><span id="tab:table-displaced">Table 1: </span>Displaced population for the last 5 years</caption>
+<colgroup>
+<col width="5%" />
+<col width="11%" />
+<col width="11%" />
+<col width="15%" />
+<col width="10%" />
+<col width="17%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Year</th>
+<th align="right">Refugees</th>
+<th align="right">IDPs</th>
+<th align="right">Asylum-seekers</th>
+<th align="right">Stateless</th>
+<th align="right">Other of concern</th>
+<th align="right">Venezuelans displaced abroad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2019</td>
+<td align="right">20,444,819</td>
+<td align="right">43,503,362</td>
+<td align="right">4,148,194</td>
+<td align="right">3,561,980</td>
+<td align="right">5,740,622</td>
+<td align="right">3,582,202</td>
+</tr>
+<tr class="even">
+<td align="left">2018</td>
+<td align="right">20,359,556</td>
+<td align="right">41,425,168</td>
+<td align="right">3,501,627</td>
+<td align="right">3,851,981</td>
+<td align="right">1,182,756</td>
+<td align="right">2,592,947</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="right">19,940,568</td>
+<td align="right">39,118,516</td>
+<td align="right">3,089,503</td>
+<td align="right">3,853,982</td>
+<td align="right">1,596,125</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
+<td align="right">17,184,291</td>
+<td align="right">36,627,127</td>
+<td align="right">2,729,521</td>
+<td align="right">3,242,206</td>
+<td align="right">803,084</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">2015</td>
+<td align="right">16,110,280</td>
+<td align="right">37,494,172</td>
+<td align="right">3,223,460</td>
+<td align="right">2,687,759</td>
+<td align="right">870,688</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="heading-2-4" class="section level2">
+<h2>Heading 2</h2>
+<p>Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus <strong>posuere convallis</strong>. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.</p>
+<p>Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus <strong>posuere convallis</strong>. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.</p>
+<div id="table-of-displaced-population-striped" class="section level5">
+<h5>Table of displaced population striped</h5>
+<p>With the help of helper function we can change the look of the table.</p>
+<div class="table-striped">
+<table>
+<caption><span id="tab:table-striped">Table 2: </span>Displaced population for the last 5 years</caption>
+<colgroup>
+<col width="5%" />
+<col width="11%" />
+<col width="11%" />
+<col width="15%" />
+<col width="10%" />
+<col width="17%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Year</th>
+<th align="right">Refugees</th>
+<th align="right">IDPs</th>
+<th align="right">Asylum-seekers</th>
+<th align="right">Stateless</th>
+<th align="right">Other of concern</th>
+<th align="right">Venezuelans displaced abroad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2019</td>
+<td align="right">20,444,819</td>
+<td align="right">43,503,362</td>
+<td align="right">4,148,194</td>
+<td align="right">3,561,980</td>
+<td align="right">5,740,622</td>
+<td align="right">3,582,202</td>
+</tr>
+<tr class="even">
+<td align="left">2018</td>
+<td align="right">20,359,556</td>
+<td align="right">41,425,168</td>
+<td align="right">3,501,627</td>
+<td align="right">3,851,981</td>
+<td align="right">1,182,756</td>
+<td align="right">2,592,947</td>
+</tr>
+<tr class="odd">
+<td align="left">2017</td>
+<td align="right">19,940,568</td>
+<td align="right">39,118,516</td>
+<td align="right">3,089,503</td>
+<td align="right">3,853,982</td>
+<td align="right">1,596,125</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">2016</td>
+<td align="right">17,184,291</td>
+<td align="right">36,627,127</td>
+<td align="right">2,729,521</td>
+<td align="right">3,242,206</td>
+<td align="right">803,084</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">2015</td>
+<td align="right">16,110,280</td>
+<td align="right">37,494,172</td>
+<td align="right">3,223,460</td>
+<td align="right">2,687,759</td>
+<td align="right">870,688</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="heading-1-will-go-to-a-new-page-1" class="section level1">
+<h1>Heading 1 will go to a new page</h1>
+<div class="lead unhcr-grey">
+<p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.</p>
 </div>
 <div id="plots" class="section level2">
 <h2>Plots</h2>
-<p>You can also embed plots created directly in R. Please review the vignette on the <code>unhcr_theme</code> for <code>ggplot2</code> for more details on how to create chart following UNHCR brand.</p>
-<p>If you have the List of figure activated you will need to include <code>fig.cap</code> in code chunk parameter. The text will be used for the caption itself as well as the name in the List of figure.</p>
+<p><abbr title="UNHCR, The UN Refugee Agency">UNHCR</abbr> ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex <em>condimentum</em> facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.</p>
 <div class="figure" style="text-align: center"><span id="fig:single-line"></span>
 <img src="workshop_report_result_files/figure-html/single-line-1.png" alt="Plot caption example" width="528" />
 <p class="caption">
 Figure 1: Plot caption example
 </p>
 </div>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot and only show the plot itself in the report.</p>
+<div class="page-break">
+
+</div>
+</div>
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+</div>
+<div id="even-code" class="section level2">
+<h2>Even code</h2>
+<p>When you compile an R Markdown document to HTML in RStudio, RStudio will display the HTML page through a local web server, so paged.js will work in RStudio Viewer. However, when you view such pages in a real web browser, you will need a separate web server. The easiest way to preview these HTML pages in a web browser may be through the RStudio <strong>servr</strong> package, just type the following code in your R console and head to <a href="http://127.0.0.1:4321/" class="uri">http://127.0.0.1:4321/</a> in your browser to access the files.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load webserver to preview paged HTML </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>servr<span class="sc">::</span><span class="fu">httd</span>()</span></code></pre></div>
 </div>
 <div id="tables" class="section level2">
 <h2>Tables</h2>
 <p>You can also embed tables. The easiest way is to use the <code>kable</code> function from the <code>knitr</code> package, that is included in the code chunks of your Rmd file. UNHCR styles are applied by default to the tables.</p>
 <p><strong>Example:</strong></p>
 <table>
-<caption><span id="tab:table-simple">Table 1: </span>Table caption example</caption>
+<caption><span id="tab:table-simple">Table 3: </span>Table caption example</caption>
 <thead>
 <tr class="header">
 <th align="right">Sepal.Length</th>

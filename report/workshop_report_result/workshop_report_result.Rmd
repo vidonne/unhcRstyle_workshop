@@ -33,11 +33,11 @@ output:
 # Set  toc title, default none
 toc-title: Contents
 # Change to false to remove list of tables
-lot: true
+lot: false
 # Set lot title, default: "List of Tables"
 lot-title: "Tables"
 # Change to false to remove list of figures
-lof: true
+lof: false
 # Set lof title, default: "List of Figures"
 lof-title: "Figures"
 # If you include any <abbr> a list of abbreviations will be built.
@@ -65,7 +65,7 @@ knitr::opts_chunk$set(
 library(unhcrthemes)
 library(unhcRstyle)
 library(unhcrdatapackage)
-library(ggplot2)
+library(tidyverse)
 library(showtext)
 
 # syntax: font_add(family = "<family_name>", regular = "/path/to/font/file")
@@ -73,23 +73,159 @@ font.add("Lato", regular = "Lato-Regular.ttf",  bold = "Lato-Bold.ttf", italic =
 # automatically use showtexts for new devices
 showtext::showtext_auto()
 
+popdata <- unhcrdatapackage::end_year_population_totals
+
 ```
 
 # Methodology
 
 ::: {.lead .unhcr-grey}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.
+Lorem ipsum dolor sit amet, **consectetur adipiscing elit**. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.
 :::
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex condimentum facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex *condimentum* facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.
 
-Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus posuere convallis. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.
+## Heading 2
 
-Maecenas tincidunt quis tellus ac feugiat. Nulla mi felis, convallis quis neque ac, volutpat fringilla risus. Cras condimentum egestas volutpat. Praesent gravida semper lectus eu sagittis. Phasellus tristique felis nec finibus iaculis. Maecenas ex justo, tristique vitae orci nec, pellentesque fringilla turpis. Morbi molestie sollicitudin enim, a aliquam purus iaculis in. Nunc iaculis metus ac lobortis consequat. Phasellus tempus varius molestie. Curabitur nec ultrices ligula. Nulla sed ex nulla.
+Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus **posuere convallis**. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.
+
+Maecenas tincidunt quis tellus ac feugiat. Nulla mi felis, convallis quis neque ac, volutpat fringilla risus. Cras condimentum egestas volutpat. **[Praesent gravida semper lectus eu sagittis.]{.unhcr-blue}** Phasellus tristique felis nec finibus iaculis. Maecenas ex justo, tristique vitae orci nec, pellentesque fringilla turpis. Morbi molestie sollicitudin enim, a aliquam purus iaculis in. Nunc iaculis metus ac lobortis consequat. Phasellus tempus varius molestie. Curabitur nec ultrices ligula. Nulla sed ex nulla.
+
+:::{.img75}
+![Colombia Shelter](img/col_shelter.jpg)
+*Visit of shelter site. &copy; Best Photographer*
+
+:::
+
+## Heading 2
+
+:::{.bg-grey}
+Nunc eget suscipit metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam in pulvinar nisi. Phasellus ullamcorper, lectus in egestas venenatis, turpis metus vulputate ex, cursus aliquam augue elit quis dui. Proin tellus elit, scelerisque sit amet tempus at, convallis sed lorem. Suspendisse hendrerit eleifend massa, ut congue augue viverra vel. Sed vel rhoncus neque. Etiam quis turpis nisi. Mauris nec sapien tellus. Etiam lectus tellus, posuere vel placerat eget, aliquam ut arcu. Aliquam eu velit sit amet magna facilisis maximus eget sit amet massa. Donec pretium ullamcorper mattis. Donec viverra nibh eu venenatis tempus. Mauris non malesuada velit.
+:::
+
+Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec <u>felis lobortis blandit et quis elit</u>. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.
+
+> Complete quote should include 3 ">" on 3 seperate lines
+>
+> Cedric Vidonne
+
+Nunc eget suscipit UNHCR^[The UN Refugee Agency]. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam in pulvinar nisi. Phasellus ullamcorper, lectus in egestas venenatis, turpis metus vulputate ex, cursus aliquam augue elit quis dui. Proin tellus elit, scelerisque sit amet tempus at, convallis sed lorem. Suspendisse hendrerit eleifend massa, ut congue augue viverra vel.
+
+#### Heading 4
+
+- I'm the first item of a list
+- I'm the second item of this list
+    1. I can be mixed with ordered list
+    2. And even nested
+- The last point of the list
+
+Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec <u>felis lobortis blandit et quis elit</u>. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.
+
+# Heading 1 will go to a new page
+
+::: {.lead .unhcr-grey}
+Lorem ipsum dolor sit amet, **consectetur adipiscing elit**. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.
+:::
+
+<abbr title="UNHCR, The UN Refugee Agency">UNHCR</abbr> ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex *condimentum* facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.
+
+## Heading 2
+
+:::{.clearfix}
+:::{.img50 .float-end}
+![Colombia Vertical](img/col_vertical.jpg)
+:::
+Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus **posuere convallis**. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.
+
+##### Heading 5
+
+- Maecenas tincidunt quis tellus ac feugiat. Nulla mi felis, convallis quis neque ac, volutpat fringilla risus. Cras condimentum egestas volutpat. Praesent gravida semper lectus eu sagittis.
+- Phasellus tristique felis nec finibus iaculis. Maecenas ex justo, tristique vitae orci nec, pellentesque fringilla turpis. Morbi molestie sollicitudin enim, a aliquam purus iaculis in.
+- Nunc iaculis metus ac lobortis consequat. Phasellus tempus varius molestie. Curabitur nec ultrices ligula. Nulla sed ex nulla.
+:::
+
+### Heading 3
 
 Nunc eget suscipit metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam in pulvinar nisi. Phasellus ullamcorper, lectus in egestas venenatis, turpis metus vulputate ex, cursus aliquam augue elit quis dui. Proin tellus elit, scelerisque sit amet tempus at, convallis sed lorem. Suspendisse hendrerit eleifend massa, ut congue augue viverra vel. Sed vel rhoncus neque. Etiam quis turpis nisi. Mauris nec sapien tellus. Etiam lectus tellus, posuere vel placerat eget, aliquam ut arcu. Aliquam eu velit sit amet magna facilisis maximus eget sit amet massa. Donec pretium ullamcorper mattis. Donec viverra nibh eu venenatis tempus. Mauris non malesuada velit.
 
-Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec felis lobortis blandit et quis elit. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.
+### Heading 3
+
+Suspendisse ut ex arcu. Nulla quis nunc egestas ipsum congue hendrerit. Nullam id ligula in erat lacinia porta. Nulla placerat mauris nec <u>felis lobortis blandit et quis elit</u>. Pellentesque eget ullamcorper nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean et neque urna. Phasellus malesuada nunc eget vehicula fermentum.
+
+## Heading 2
+
+Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus **posuere convallis**. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.
+
+##### Table of displaced population
+
+Table are easily added with the `knitr::kable` function
+
+```{r table-displaced, echo=FALSE, message=FALSE, warning=FALSE}
+displaced_table <- popdata %>% 
+  group_by(Year) %>% 
+  summarise(Refugees = sum(REF, na.rm = TRUE),
+            `IDPs` = sum(IDP, na.rm = TRUE),
+            `Asylum-seekers` = sum(ASY, na.rm = TRUE),
+            `Stateless` = sum(STA, na.rm = TRUE),
+            `Other of concern` = sum(OOC, na.rm = TRUE),
+            `Venezuelans displaced abroad` = sum(VDA, na.rm = TRUE)) %>% 
+  arrange(desc(Year))
+knitr::kable(head(displaced_table, 5),
+             caption = "Displaced population for the last 5 years",
+             format.args = list(big.mark = ",", scientific = FALSE))
+```
+
+
+## Heading 2
+
+Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus **posuere convallis**. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.
+
+Duis ac turpis ut mi tristique consequat. Ut posuere feugiat lacus ac cursus. Integer blandit sem vel diam pretium, vel lobortis nunc vulputate. Proin faucibus venenatis ligula, quis varius ex laoreet in. Vestibulum et interdum enim, ut tempus tellus. Donec id iaculis eros. Pellentesque eget tempor ipsum. Aenean ac hendrerit arcu. Vestibulum porttitor aliquam risus **posuere convallis**. Sed ligula nisl, dapibus vel metus ac, molestie semper justo. Donec vel nisi nec dolor auctor venenatis. Sed ultricies dignissim auctor. Donec tincidunt quis mi eu tristique. Aliquam tristique maximus consequat.
+
+##### Table of displaced population striped
+
+With the help of helper function we can change the look of the table.
+
+
+:::{.table-striped}
+```{r table-striped, echo=FALSE, message=FALSE, warning=FALSE}
+displaced_table <- popdata %>% 
+  group_by(Year) %>% 
+  summarise(Refugees = sum(REF, na.rm = TRUE),
+            `IDPs` = sum(IDP, na.rm = TRUE),
+            `Asylum-seekers` = sum(ASY, na.rm = TRUE),
+            `Stateless` = sum(STA, na.rm = TRUE),
+            `Other of concern` = sum(OOC, na.rm = TRUE),
+            `Venezuelans displaced abroad` = sum(VDA, na.rm = TRUE)) %>% 
+  arrange(desc(Year))
+knitr::kable(head(displaced_table, 5),
+             caption = "Displaced population for the last 5 years",
+             format.args = list(big.mark = ",", scientific = FALSE))
+```
+:::
+
+# Heading 1 will go to a new page
+
+::: {.lead .unhcr-grey}
+Lorem ipsum dolor sit amet, **consectetur adipiscing elit**. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus.
+:::
+
+## Plots
+
+<abbr title="UNHCR, The UN Refugee Agency">UNHCR</abbr> ipsum dolor sit amet, consectetur adipiscing elit. In odio eros, viverra et lacus ac, scelerisque pretium urna. Proin scelerisque posuere eros sed finibus. Phasellus non risus quis mi aliquet aliquam sit amet vitae est. Nullam vitae purus interdum, faucibus felis in, dictum massa. Ut ornare risus at ex *condimentum* facilisis. Pellentesque facilisis libero eu ipsum sollicitudin venenatis eget sed sem. Quisque quis vehicula tellus, ac porta sem. Cras orci lectus, fringilla congue vulputate vel, aliquam eu sem. Nulla facilisi. Nulla sit amet enim non mi condimentum pharetra et sed neque. Nullam convallis mauris vel neque hendrerit ullamcorper.
+
+```{r single-line, echo=FALSE, message=FALSE, fig.cap="Plot caption example"}
+ggplot(datasets::iris, aes(x = Petal.Length, y = Petal.Width)) +
+  geom_point(color = unhcr_blue) +
+  labs(x="Petal length", y="Petal width",
+      title = "Iris data ggplot2 scatterplot example",
+      subtitle= "Just a simple plot to show the basic style of theme_unhcr",
+      caption = "Data from datasets::iris") +
+  unhcr_theme(base_size = 14)
+```
+
+:::{.page-break}
+:::
 
 ## R Markdown
 
@@ -97,11 +233,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
-
-## Preview paged HTML report
+## Even code
 
 When you compile an R Markdown document to HTML in RStudio, RStudio will display the HTML page through a local web server, so paged.js will work in RStudio Viewer. However, when you view such pages in a real web browser, you will need a separate web server. The easiest way to preview these HTML pages in a web browser may be through the RStudio **servr** package, just type the following code in your R console and head to <http://127.0.0.1:4321/> in your browser to access the files.
 
@@ -109,47 +241,6 @@ When you compile an R Markdown document to HTML in RStudio, RStudio will display
 # Load webserver to preview paged HTML 
 servr::httd()
 ```
-
-## Print to PDF
-
-The easiest way to print to PDF is with Google Chrome or Chromium using the menu “Print” or by pressing Ctrl + P (or Command + P on macOS). Remember to allow background graphics to be printed.
-
-There are also 2 other built-in ways:
-
-1. using the function pagedown::chrome_print(). Its first argument (input) accepts a path to a local Rmd or HTML file or an URL. Google Chrome or Chromium must be installed on your system.
-2. in RStudio, adding the following line in the YAML header of your Rmd file:
-
-```{r print, include=TRUE, eval=FALSE}
-knit: pagedown::chrome_print
-```
-
-With this metadata parameter, the behavior of the “Knit” button of RStudio is modified: it produces both the HTML document and the PDF with Chrome. This functionality is suitable for any R Markdown HTML output format and is mainly convenient for small documents like presentations or notes.
-If chrome_print() cannot find Chrome or Chromium automatically, set the PAGEDOWN_CHROME environment variable to the path to Chrome or Chromium executable.
-
-## YAML metadata
-
-A lot of components such as the table of contents, list of figures, etc. can be activated, deactivated or tweaked directly in the YAML at the top of the R Markdown document. Please refer at the guidance directly added there.
-
-See <https://pagedown.rbind.io/#miscellaneous-features> for extra information on the YAML variables of the package.
-
-## Plots
-
-You can also embed plots created directly in R. Please review the vignette on the `unhcr_theme` for `ggplot2` for more details on how to create chart following UNHCR brand.
-
-If you have the List of figure activated you will need to include `fig.cap` in code chunk parameter. The text will be used for the caption itself as well as the name in the List of figure.
-
-
-```{r single-line, echo=FALSE, message=FALSE, fig.cap="Plot caption example"}
-ggplot(datasets::iris, aes(x = Petal.Length, y = Petal.Width)) +
-  geom_point() +
-  labs(x="Petal length", y="Petal width",
-      title = "Iris data ggplot2 scatterplot example",
-      subtitle= "Just a simple plot to show the basic style of theme_unhcr",
-      caption = "Data from datasets::iris") +
-  theme_unhcr(base_size = 14)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot and only show the plot itself in the report.
 
 ## Tables
 

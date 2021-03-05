@@ -65,7 +65,7 @@ knitr::opts_chunk$set(
 library(unhcrthemes)
 library(unhcRstyle)
 library(unhcrdatapackage)
-library(ggplot2)
+library(tidyverse)
 library(showtext)
 
 # syntax: font_add(family = "<family_name>", regular = "/path/to/font/file")
